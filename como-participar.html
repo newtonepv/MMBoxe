@@ -14,7 +14,8 @@
 <body>
 <header class="navbar">
 <a class="logo" href="index.html" aria-label="MM Boxe — página inicial"><img class="mm-brand-image" src="logo-mm-boxe.png" alt="MM Boxe" /></a>
-<nav aria-label="Principal" class="menu">
+<button type="button" class="menu-toggle" aria-expanded="false" aria-controls="menu-principal" aria-label="Abrir menu"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-open"><path d="M4 7h16M4 12h16M4 17h16"/></svg><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-close"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+<nav aria-label="Principal" class="menu" id="menu-principal">
 <a href="index.html">Início</a>
 <a href="sobre.html">Sobre o Projeto</a>
 <a href="como-funciona.html">Como Funciona</a>
@@ -39,9 +40,18 @@
 <ol class="steps-list" style="padding:0; margin:0; list-style:none">
 <li><span class="num">1</span> Confira a faixa etária, os dias e os horários</li>
 <li><span class="num">2</span> Preencha o formulário de interesse</li>
-<li><span class="num">3</span> Confirme documentos e orientações com a equipe</li>
+<li><span class="num">3</span> Separe os documentos e confirme orientações com a equipe</li>
 <li><span class="num">4</span> Compareça ao local para concluir a inscrição</li>
 </ol>
+<div class="card docs-card">
+<h3>Documentos para a matrícula</h3>
+<ul class="bullets">
+<li>RG e CPF do responsável</li>
+<li>Certidão de nascimento ou RG do aluno(a)</li>
+<li>Atestado médico para prática de atividade física</li>
+</ul>
+<p class="muted" style="margin-top:12px">Leve os documentos no dia em que for concluir a inscrição. Se faltar algum, fale com a equipe.</p>
+</div>
 </div>
 <div class="stack" style="--gap:24px">
 <div class="card">
@@ -53,8 +63,8 @@
 </div>
 <div class="stack" style="--gap:16px">
 <h3 class="title-sm">Localização</h3>
-<div class="location-visual"><img alt="Imagem ilustrativa de equipamentos de boxe" loading="lazy" src="imagens/cena-2-4.jpg"/><div><strong>Rio Claro · SP</strong><span>Local de treino ainda não informado. Consulte a equipe.</span></div></div>
-<a class="btn btn--secondary" href="https://www.google.com/maps/search/?api=1&amp;query=Rio+Claro+SP" rel="noopener noreferrer" style="align-self:flex-start" target="_blank">Ver Rio Claro no mapa</a>
+<div class="location-visual"><img alt="Imagem ilustrativa de equipamentos de boxe" loading="lazy" src="imagens/cena-2-4.jpg"/><div><strong>Rio Claro · SP</strong><span>Rua 1B, 357, Cidade Nova. Confirme com a equipe antes de ir.</span></div></div>
+<a class="btn btn--secondary" href="https://www.google.com/maps/search/?api=1&amp;query=Rua+1B+357+Cidade+Nova+Rio+Claro+SP" rel="noopener noreferrer" style="align-self:flex-start" target="_blank"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Ver no mapa</a>
 </div>
 </div>
 </div>
@@ -62,21 +72,37 @@
 <section class="section section--surface" id="formulario">
 <div class="container stack" style="--gap:24px">
 <h2 class="title-lg">Formulário de interesse</h2>
-<p class="lead">Preencha para cada filho(a). A inscrição é concluída pessoalmente no CT.</p>
-<form action="" class="form-card" id="form-interesse" method="get">
+<p class="lead">Preencha para cada filho(a). Ao enviar, abrimos o WhatsApp com seus dados para a equipe. A inscrição é concluída pessoalmente no CT.</p>
+<form action="" class="form-card" id="form-interesse" method="get" novalidate>
+<p class="form-legend"><span class="req" aria-hidden="true">*</span> Campo obrigatório. O projeto atende alunos de 10 a 17 anos.</p>
 <div class="form-row">
-<div class="field"><label for="responsavel">Nome do responsável</label><input id="responsavel" name="responsavel" placeholder="Digite aqui" required="" type="text"/></div>
-<div class="field"><label for="aluno">Nome do aluno(a)</label><input id="aluno" name="aluno" placeholder="Digite aqui" required="" type="text"/></div>
+<div class="field"><label for="responsavel">Nome do responsável <span class="req" aria-hidden="true">*</span></label><input id="responsavel" name="responsavel" type="text" placeholder="Ex.: Maria da Silva" required aria-required="true" autocomplete="name" aria-describedby="responsavel-erro"/><span class="field-error" id="responsavel-erro" role="alert"></span></div>
+<div class="field"><label for="aluno">Nome do aluno(a) <span class="req" aria-hidden="true">*</span></label><input id="aluno" name="aluno" type="text" placeholder="Ex.: João da Silva" required aria-required="true" autocomplete="off" aria-describedby="aluno-erro"/><span class="field-error" id="aluno-erro" role="alert"></span></div>
 </div>
 <div class="form-row">
-<div class="field"><label for="email">E-mail</label><input id="email" name="email" placeholder="Digite aqui" type="email"/></div>
-<div class="field"><label for="telefone">Telefone / WhatsApp</label><input id="telefone" name="telefone" placeholder="Digite aqui" required="" type="tel"/></div>
+<div class="field"><label for="nascimento">Data de nascimento do aluno(a) <span class="req" aria-hidden="true">*</span></label><span class="field-hint" id="nascimento-dica">Idade permitida: de 10 a 17 anos.</span><input id="nascimento" name="nascimento" type="date" placeholder="dd/mm/aaaa" required aria-required="true" min="1900-01-01" aria-describedby="nascimento-dica nascimento-erro"/><span class="field-error" id="nascimento-erro" role="alert"></span></div>
+<div class="field"><label for="telefone">Telefone / WhatsApp <span class="req" aria-hidden="true">*</span></label><input id="telefone" name="telefone" type="tel" placeholder="(16) 99999-9999" required aria-required="true" pattern="(?:\([1-9]{2}\)|[1-9]{2})\s?9[0-9]{4}-?[0-9]{4}" maxlength="15" inputmode="tel" autocomplete="tel" title="Digite um número de celular com DDD, ex.: (16) 99999-9999" aria-describedby="telefone-erro"/><span class="field-error" id="telefone-erro" role="alert"></span></div>
+</div>
+<div class="form-row">
+<div class="field"><label for="email">E-mail (opcional)</label><input id="email" name="email" type="email" placeholder="nome@email.com" autocomplete="email" aria-describedby="email-erro"/><span class="field-error" id="email-erro" role="alert"></span></div>
 </div>
 <div class="btn-group">
-<button class="btn btn--primary" type="submit">Enviar interesse</button>
-<a class="btn btn--secondary" href="contato.html">Falar no WhatsApp</a>
+<button class="btn btn--primary" type="submit"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4z"/></svg>Enviar pelo WhatsApp</button>
+<a class="btn btn--secondary" data-whatsapp="Olá! Tenho dúvidas sobre as inscrições na MM Boxe." href="contato.html"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 20.5l1.7-5.4A8.5 8.5 0 1 1 21 11.5z"/><path d="M9 8.5c0 3.5 3 6.5 6.5 6.5l1-1.6-2.2-1-1 .8a4.5 4.5 0 0 1-2-2l.8-1-1-2.2z"/></svg>Tirar dúvidas</a>
 </div>
-<p aria-live="polite" class="form-message" id="form-message" role="status"></p></form>
+<p aria-live="polite" class="form-message" id="form-message" role="status"></p>
+</form>
+</div>
+</section>
+<section class="section">
+<div class="container stack" style="--gap:32px">
+<h2 class="title-lg">Dúvidas frequentes</h2>
+<div class="faq">
+<details><summary>Que roupa o aluno deve usar?</summary><p>Roupa leve e confortável, como camiseta, bermuda ou calça de moletom, e tênis fechado. Evite brincos, colares e outros acessórios.</p></details>
+<details><summary>Preciso comprar luvas?</summary><p>Consulte a equipe antes de comprar luvas, bandagens ou outros itens. A necessidade varia conforme a atividade.</p></details>
+<details><summary>E se o aluno faltar a uma aula?</summary><p>Avise a equipe pelo WhatsApp sempre que possível. Confirme com a equipe as regras de frequência do projeto.</p></details>
+<details><summary>Preciso de atestado médico?</summary><p>Sim, o atestado médico para prática de atividade física faz parte dos documentos da matrícula. Em caso de afastamento por lesão ou doença, informe a equipe.</p></details>
+</div>
 </div>
 </section>
 </main>
@@ -111,5 +137,6 @@
 </div>
 <p class="footer__bottom">© 2026 MM Boxe · Projeto Social. Atividades gratuitas.</p>
 </footer>
-<script>document.querySelector('#form-interesse').addEventListener('submit', function(event) { event.preventDefault(); if(!this.reportValidity()) return; document.querySelector('#form-message').textContent = 'Formulário preenchido. Para enviar seu interesse, entre em contato com a equipe pelo canal de contato. Nenhum dado foi transmitido.'; this.reset(); });</script></body>
+<script defer src="site.js"></script>
+</body>
 </html>

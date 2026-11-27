@@ -14,7 +14,8 @@
 <body>
 <header class="navbar">
 <a class="logo" href="index.html" aria-label="MM Boxe — página inicial"><img class="mm-brand-image" src="logo-mm-boxe.png" alt="MM Boxe" /></a>
-<nav aria-label="Principal" class="menu">
+<button type="button" class="menu-toggle" aria-expanded="false" aria-controls="menu-principal" aria-label="Abrir menu"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-open"><path d="M4 7h16M4 12h16M4 17h16"/></svg><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-close"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+<nav aria-label="Principal" class="menu" id="menu-principal">
 <a href="index.html">Início</a>
 <a aria-current="page" href="sobre.html">Sobre o Projeto</a>
 <a href="como-funciona.html">Como Funciona</a>
@@ -69,7 +70,7 @@
 <h2>Quer fazer parte dessa transformação?</h2>
 <p>Conheça o projeto e saiba como inscrever seu filho ou sua filha.</p>
 </div>
-<a class="btn btn--on-brand" href="como-participar.html">Como participar</a>
+<a class="btn btn--on-brand" href="como-participar.html">Como participar<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
 </section>
 </main>
 <footer class="footer">
@@ -103,5 +104,6 @@
 </div>
 <p class="footer__bottom">© 2026 MM Boxe · Projeto Social. Atividades gratuitas.</p>
 </footer>
+<script defer src="site.js"></script>
 </body>
 </html>
